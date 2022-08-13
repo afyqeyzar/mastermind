@@ -1,9 +1,5 @@
 class ComputerMaker
     
-    def initialize
-        @name = "name"
-    end
-
     def random_four
         @computer_maker_array = []
         4.times do |i|
@@ -14,6 +10,18 @@ class ComputerMaker
     end
 end
 
-computer_choice = ComputerMaker.new()
+class PlayerGuess
+    def get_guess
+        puts "Enter guess (4 digit number): "
+        @player_guess = gets.chomp
+        @player_guess_array = @player_guess.split("") #note: number in array are strings
+    end
+end
 
-p computer_choice.random_four
+
+player = PlayerGuess.new()
+p player.get_guess
+
+# computer_choice = ComputerMaker.new()
+
+# p computer_choice.random_four
