@@ -33,16 +33,28 @@ class Game
         @player_guess = PlayerGuess.new().get_guess
     end
 
+    # def compare
+    #     @computer_array.each_with_index do |comp_number, comp_index|
+    #         @player_guess.each_with_index do |player_str, player_index|
+    #             if player_str == comp_number.to_s and comp_index == player_index
+    #                 print player_str.green
+    #             elsif player_str == comp_number.to_s and comp_index != player_index
+    #                 print player_str.yellow
+    #             else
+    #                 print player_str
+    #             end
+    #         end
+    #     end
+    # end
+
     def compare
         @computer_array.each_with_index do |comp_number, comp_index|
-            @player_guess.each_with_index do |player_str, player_index|
-                if player_str == comp_number.to_s and comp_index == player_index
-                    print player_str.green
-                elsif player_str == comp_number.to_s and comp_index != player_index
-                    print player_str.yellow
-                else
-                    print player_str
-                end
+            if comp_number.to_s == @player_guess[comp_index]
+                print player_guess[comp_index].green
+            elsif @player_guess.include?(comp_number.to_s)
+                print player_guess(comp_number.to_s.yellow)
+            else
+                print player_guess[comp_index]
             end
         end
     end
