@@ -14,14 +14,20 @@ class PlayerGuess
     def get_guess
         puts "Enter guess (4 digit number): "
         @player_guess = gets.chomp
-        @player_guess_array = @player_guess.split("") #note: number in array are strings
+        if @player_guess.length == 4
+            @player_guess_array = @player_guess.split("") #note: number in array are strings
+        else   
+            p "Please try again"
+            get_guess()
+        end
     end
 end
 
 
+
+
+
 player = PlayerGuess.new()
 p player.get_guess
-
 # computer_choice = ComputerMaker.new()
-
 # p computer_choice.random_four
