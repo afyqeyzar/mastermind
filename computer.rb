@@ -34,15 +34,27 @@ class Game
     end
 
     def compare
+        @temp_comp_ans = @computer_array
+        @colored_output = {:green => [], :yellow => [], :gray => []}
+
         @player_guess.each_with_index do |player_guess, player_index|
-            if player_guess == @computer_array[player_index].to_s
-                print player_guess.green
-            elsif @computer_array.include?(player_guess.to_i) #&& player_guess == @computer_array[player_index].to_s
-                print player_guess.yellow
-            else
-                print player_guess
+            if player_guess == @temp_comp_ans[player_index].to_s
+                @colored_output[:green] << player_guess
+                @temp_comp_ans[player_index] = nil
+                p @temp_comp_ans
             end
         end
+
+        @player_guess.each_with_index do |player_guess, player_index|     
+            if @temp_comp_ans.include?(player_guess.to_i) && player_guess != @computer_array[player_index].to_s
+                @colored_output[:yellow] << player_guess
+            elsif @temp_comp_ans[player_index] == nil  
+                next
+            else
+                @colored_output[:gray] << player_guess
+            end
+        end
+        puts @colored_output
     end
 end
 
@@ -57,5 +69,6 @@ newGame.compare
 # p computer_choice.random_four
 
 
-#puts "I am now red".yellow
+#arr = [ "I am now red".yellow]
 
+#p arr[0]
