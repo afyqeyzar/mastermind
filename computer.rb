@@ -1,3 +1,4 @@
+require 'colorize'
 class ComputerMaker
     
     def random_four
@@ -28,15 +29,35 @@ class Game
     
     def initialize
         @computer_array = ComputerMaker.new().random_four
+        p @computer_array
         @player_guess = PlayerGuess.new().get_guess
+    end
+
+    def compare
+        @computer_array.each_with_index do |comp_number, comp_index|
+            @player_guess.each_with_index do |player_str, player_index|
+                if player_str == comp_number.to_s and comp_index == player_index
+                    print player_str.green
+                elsif player_str == comp_number.to_s and comp_index != player_index
+                    print player_str.yellow
+                else
+                    print player_str
+                end
+            end
+        end
     end
 end
 
 
 newGame = Game.new()
+newGame.compare
 
-p newGame.player_guess
+# newGame.player_guess
 #player = PlayerGuess.new()
 #p player.get_guess
 # computer_choice = ComputerMaker.new()
 # p computer_choice.random_four
+
+
+#puts "I am now red".yellow
+
