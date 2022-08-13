@@ -23,11 +23,20 @@ class PlayerGuess
     end
 end
 
+class Game
+    attr_reader :computer_array, :player_guess
+    
+    def initialize
+        @computer_array = ComputerMaker.new().random_four
+        @player_guess = PlayerGuess.new().get_guess
+    end
+end
 
 
+newGame = Game.new()
 
-
-player = PlayerGuess.new()
-p player.get_guess
+p newGame.player_guess
+#player = PlayerGuess.new()
+#p player.get_guess
 # computer_choice = ComputerMaker.new()
 # p computer_choice.random_four
