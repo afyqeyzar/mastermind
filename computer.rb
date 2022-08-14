@@ -38,7 +38,7 @@ class Game
         @temp_comp_ans = [1, 1, 2, 3]
         #p @temp_comp_ans
         @colored_output = ["gray", "gray", "gray", "gray",]
-        p player_guess
+        #p player_guess
 
         @player_guess.each_with_index do |player_guess, player_index|
             if player_guess == @temp_comp_ans[player_index].to_s
@@ -51,10 +51,10 @@ class Game
         @player_guess.each_with_index do |player_guess, player_index|     
             if @temp_comp_ans.include?(player_guess.to_i) && @colored_output[player_index] != "green"
                 @colored_output[player_index] = "yellow"
-                @temp_comp_ans[player_index] = nil
+                @temp_comp_ans[@temp_comp_ans.index(player_guess.to_i)] = nil
             end
         end
-        p @temp_comp_ans
+        #p @temp_comp_ans
         p @colored_output
 
     end
