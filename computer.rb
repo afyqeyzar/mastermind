@@ -55,19 +55,27 @@ class Game
         end
         @colored_output
     end
+
+    def display
+        @color_code = self.compare
+        @player_guess.each_with_index do |player_guess, player_index|
+            if @color_code[player_index] == "green"
+                print player_guess.green
+            elsif @color_code[player_index] == "yellow"
+                print player_guess.yellow
+            else
+                print player_guess
+            end
+        end
+    end
+
 end
 
-
-newGame = Game.new()
-newGame.compare
-
-# newGame.player_guess
-#player = PlayerGuess.new()
-#p player.get_guess
-# computer_choice = ComputerMaker.new()
-# p computer_choice.random_four
+def play_game
+    newGame = Game.new()
 
 
-#arr = [ "I am now red".yellow]
+end
 
-#p arr[0]
+#newGame.display
+play_game()
