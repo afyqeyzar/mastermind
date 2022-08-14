@@ -29,12 +29,14 @@ class Game
     
     def initialize
         @computer_array = ComputerMaker.new().random_four
-        p @computer_array
+        #p @computer_array
         @player_guess = PlayerGuess.new().get_guess
     end
 
+    #there a weird bug where multiple same guesses messes up the output if answer has multiple same numbers
     def compare
-        @temp_comp_ans = @computer_array
+        @temp_comp_ans = [1, 1, 2, 1]
+        p @temp_comp_ans
         @colored_output = {:green => [], :yellow => [], :gray => []}
 
         @player_guess.each_with_index do |player_guess, player_index|
@@ -44,6 +46,7 @@ class Game
                 p @temp_comp_ans
             end
         end
+        p @temp_comp_ans
 
         @player_guess.each_with_index do |player_guess, player_index|     
             if @temp_comp_ans.include?(player_guess.to_i) && player_guess != @computer_array[player_index].to_s
