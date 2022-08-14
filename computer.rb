@@ -33,9 +33,9 @@ class Game
         @player_guess = PlayerGuess.new().get_guess
     end
 
-    #there a weird bug where multiple same guesses messes up the output if answer has multiple same numbers
+    #there a weird bug where multiple same guesses messes up the output if answer has multiple same numbers (ans: 1123 guess: 2112)
     def compare
-        @temp_comp_ans = [1, 1, 2, 1]
+        @temp_comp_ans = [1, 1, 2, 3]
         p @temp_comp_ans
         @colored_output = {:green => [], :yellow => [], :gray => []}
 
@@ -43,6 +43,8 @@ class Game
             if player_guess == @temp_comp_ans[player_index].to_s
                 @colored_output[:green] << player_guess
                 @temp_comp_ans[player_index] = nil
+                @player_guess[player_index] = "empty"
+                p @player_guess
                 p @temp_comp_ans
             end
         end
@@ -51,7 +53,7 @@ class Game
         @player_guess.each_with_index do |player_guess, player_index|     
             if @temp_comp_ans.include?(player_guess.to_i) && player_guess != @computer_array[player_index].to_s
                 @colored_output[:yellow] << player_guess
-            elsif @temp_comp_ans[player_index] == nil  
+            elsif @temp_comp_ans[player_index] == nil or @player_guess[player_index] == "empty"
                 next
             else
                 @colored_output[:gray] << player_guess
