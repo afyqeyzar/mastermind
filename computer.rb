@@ -38,29 +38,25 @@ class Game
         @temp_comp_ans = [1, 1, 2, 3]
         #p @temp_comp_ans
         @colored_output = ["gray", "gray", "gray", "gray",]
+        p player_guess
 
         @player_guess.each_with_index do |player_guess, player_index|
             if player_guess == @temp_comp_ans[player_index].to_s
                 @colored_output[player_index] = "green"
                 @temp_comp_ans[player_index] = nil
-                #@player_guess[player_index] = "empty"
-                #p "player: #{@player_guess}"
-                #p "comp: #{@temp_comp_ans}"
             end
         end
         #p @temp_comp_ans
 
         @player_guess.each_with_index do |player_guess, player_index|     
-            if @temp_comp_ans.include?(player_guess.to_i) && player_guess != @computer_array[player_index].to_s
+            if @temp_comp_ans.include?(player_guess.to_i) && @colored_output[player_index] != "green"
                 @colored_output[player_index] = "yellow"
-                #p "first: #{@temp_comp_ans}"
-                #@temp_comp_ans[player_index] = nil
-                #p "second: #{@temp_comp_ans}"
-            elsif @temp_comp_ans[player_index] == nil or @player_guess[player_index] == "empty"
-                next
+                @temp_comp_ans[player_index] = nil
             end
         end
+        p @temp_comp_ans
         p @colored_output
+
     end
 end
 
