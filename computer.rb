@@ -25,16 +25,16 @@ class PlayerGuess
 end
 
 class Game
-    attr_reader :computer_array, :player_guess
+    attr_reader :computer_array, :player_guess, :colored_output
     
-    def initialize
-        @computer_array = ComputerMaker.new().random_four
-        @player_guess = PlayerGuess.new().get_guess
+    def initialize(answer)
+        @computer_array = answer       
     end
 
     
     def compare
-        @temp_comp_ans = [1, 1, 2, 3]
+        @player_guess = PlayerGuess.new().get_guess
+        @temp_comp_ans = @computer_array.clone
         @colored_output = ["gray", "gray", "gray", "gray",]
         
         #check for green numbers
@@ -54,6 +54,8 @@ class Game
             end
         end
         @colored_output
+        #p computer_array
+        #@temp_comp_ans = @computer_array
     end
 
     def display
@@ -67,14 +69,20 @@ class Game
                 print player_guess
             end
         end
+        puts ""
     end
-
 end
 
+
 def play_game
-    newGame = Game.new()
+    newGame = Game.new([1,2,3,4])
 
-
+    6.times do |i|
+        newGame.display
+        if newGame.colored_output == ["green", "green", "green", "green",]
+            break
+        end
+    end
 end
 
 #newGame.display
