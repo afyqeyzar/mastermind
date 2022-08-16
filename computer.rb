@@ -13,7 +13,7 @@ end
 
 class PlayerGuess
     def get_guess
-        puts "Enter guess (4 digit number): "
+        puts "Enter guess (4 digit number)(1-6): "
         @player_guess = gets.chomp
         if @player_guess.length == 4
             @player_guess_array = @player_guess.split("") #note: number in array are strings
@@ -75,13 +75,21 @@ end
 
 
 def play_game
-    newGame = Game.new([1,2,3,4])
+    answer = ComputerMaker.new().random_four
+    newGame = Game.new(answer)
 
-    6.times do |i|
+    7.times do |i|
         newGame.display
         if newGame.colored_output == ["green", "green", "green", "green",]
             break
         end
+    end
+    if newGame.colored_output == ["green", "green", "green", "green",]
+        puts "You won!"
+    else
+        print "You lost. Answer: "
+        answer.each {|num| print num}
+        puts ""
     end
 end
 
